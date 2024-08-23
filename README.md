@@ -1,2 +1,2 @@
-# im
-Image Manipulation Library for C/C++
+# image
+Image library for C

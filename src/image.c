@@ -2,6 +2,7 @@
  * @brief Basic Image Management
  */
 
+#include "util.h"
 #include <image.h>
 
 #include <malloc.h>
@@ -14,20 +15,16 @@ int image_is_valid(image_t image) {
 image_t *image_allocate(uint32_t width, uint32_t height, uint32_t channels) {
   image_t *out = malloc(sizeof(image_t));
 
-  if (!out) {
-    // TODO error
-    return NULL;
-  }
+  HANDLE(out, "failed to allocate image", return NULL);
 
   out->width = width, out->height = height;
   out->channels = channels;
   out->data = malloc(out->width * out->height * out->channels);
 
-  if (!out->data) {
-    // TODO error
+  HANDLE(out->data, "failed to allocate image data", {
     free(out);
     return NULL;
-  }
+  });
 
   return out;
 }

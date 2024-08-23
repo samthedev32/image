@@ -187,7 +187,9 @@ int image_save_bmp(image_t image, const char *path) {
   uint32_t dataStart = ftell(f); // start of image data
 
   for (int i = 0; i < image.width * image.height; i++) {
-    unsigned char *current = &image.data[i * image.channels];
+    unsigned char *current =
+        &image.data[image.width * image.height * image.channels -
+                    i * image.channels];
     unsigned char value[3] = {current[2] * current[3] / 255,
                               current[1] * current[3] / 255,
                               current[0] * current[3] / 255};

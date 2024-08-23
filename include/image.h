@@ -1,7 +1,6 @@
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
 
-#include <sys/types.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -40,8 +39,9 @@ image_t *image_load_bmp(const char *path);
 int image_save_bmp(image_t image, const char *path);
 
 image_t *image_load_qoi(const char *path);
-// int image_save_qoi(image_t image, const char *path);
+int image_save_qoi(image_t image, const char *path);
 
+image_t *image_load_png(const char *path);
 // TODO png, jpg, qoi
 
 //////////////////////////////// Drawing
