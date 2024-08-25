@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include <stdio.h>
 
 #define MESSAGE(type, message)                                                 \

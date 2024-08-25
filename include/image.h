@@ -11,8 +11,7 @@ extern "C" {
 
 #include <stdint.h>
 
-// enum PixelFormat {};
-
+// Uncompressed R-G-B-A (channel dependent) Image
 typedef struct {
   uint32_t width, height;
   uint8_t channels;
@@ -31,17 +30,42 @@ image_t *image_allocate(uint32_t width, uint32_t height, uint32_t channels);
 // Free Image
 void image_free(image_t *image);
 
+// Resize image to desired size
+void image_resize(image_t *image, uint32_t width, uint32_t height,
+                  uint32_t channels);
+
+// Rotate image by amount * 90 degrees
+void image_rotate(image_t *image, int amount);
+
 // TODO copy, resize, crop, rotate, etc
 
 //////////////////////////////// File I/O
 
-image_t *image_load_bmp(const char *path);
-int image_save_bmp(image_t image, const char *path);
+// ---- QOI
 
+// Load QOI Image
 image_t *image_load_qoi(const char *path);
+
+// Save QOI Image
 int image_save_qoi(image_t image, const char *path);
 
-image_t *image_load_png(const char *path);
+// ---- BMP
+
+// Load BMP Image
+image_t *image_load_bmp(const char *path);
+
+// Save BMP Image
+int image_save_bmp(image_t image, const char *path);
+
+// ---- TIFF
+
+// Load a batch of TIFF Images (one file may contain multiple images)
+int image_load_tiff_batch(image_t **image, const char *path);
+
+// Load TIFF Image
+image_t *image_load_tiff(const char *path);
+
+// image_t *image_load_png(const char *path);
 // TODO png, jpg, qoi
 
 //////////////////////////////// Drawing

@@ -10,6 +10,7 @@ set(SOURCES
     src/bmp.c
     src/png.c
     src/qoi.c
+    src/tiff.c
 )
 
 add_library(image ${SOURCES})

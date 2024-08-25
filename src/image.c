@@ -13,6 +13,8 @@ int image_is_valid(image_t image) {
 }
 
 image_t *image_allocate(uint32_t width, uint32_t height, uint32_t channels) {
+  HANDLE(width != 0 && height != 0 && channels != 0, "invalid value(s)", return NULL);
+
   image_t *out = malloc(sizeof(image_t));
 
   HANDLE(out, "failed to allocate image", return NULL);
